@@ -44,7 +44,7 @@ namespace Battleship_Game
             return this;
         }
 
-        public List<Position> generatePositions(int size, List<Position> AllPositions)
+        /*public List<Position> generatePositions(int size, List<Position> AllPositions)
         {
             List<Position> positions = new List<Position>();
         }
@@ -54,7 +54,7 @@ namespace Battleship_Game
         {
             carrierList = generatePositions(carrier, allPositions);
 
-        }
+        }*/
 
 
 
