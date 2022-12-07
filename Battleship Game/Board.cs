@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Battleship_Game
 {
-    class MainClass
+    class Board
     {
-        static void Main(string[] args)
-        {
 
-        }
     }
 }
