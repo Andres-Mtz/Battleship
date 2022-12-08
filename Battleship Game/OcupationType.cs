@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Battleship_Game
 {
-    class MainClass
+    public enum OcupationType
     {
-        static void Main(string[] args)
-        {
 
-        }
     }
 }
