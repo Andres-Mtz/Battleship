@@ -6,14 +6,14 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Battleship_Game
+namespace Battleship
 {
     public class Position
     {
-        public int x { get; set; } = -1;
-        public int y { get; set; } = -1;
+        public int x { get; set; }
+        public int y { get; set; }
 
-        public void Coordinates(int row, int column)
+        public void coordinates(int row, int column)
         {
             x = row;
             y = column;
