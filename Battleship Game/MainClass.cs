@@ -11,6 +11,9 @@ namespace Battleship
 {
     class Program
     {
+        #region Classes
+
+        #region Main class
         static void Main(string[] args)
         {
             bool showShips = false;
@@ -100,7 +103,9 @@ namespace Battleship
             WriteLine("Total steps taken:{0} ", Game);
             ReadLine();
         }
+        #endregion Main class
 
+        #region Print stats
         static void PrintStatistic(int x, int y, GameFlow game)
         {
             if (x == 1 && y == 10)
@@ -190,7 +195,9 @@ namespace Battleship
                 }
             }
         }
+        #endregion Print stats
 
+        #region Print map
         static void PrintMap(List<Position> positions, GameFlow myBoard, GameFlow enemyGame, bool showEnemyShips)
         {
             PrintHeader();
@@ -280,7 +287,9 @@ namespace Battleship
                 string error = e.Message.ToString();
             }
         }
+        #endregion Print map
 
+        #region Print enemy map
         static void PrintMapOfEnemy(int x, char row, GameFlow myBoard, GameFlow enemyBoard, ref int MyshipCounter, ref int EnemyHitCounter)
         {
             List<Position> EnemyFirePositions = new List<Position>();
@@ -351,7 +360,9 @@ namespace Battleship
                 string error = e.Message.ToString();
             }
         }
+        #endregion Print enemy map
 
+        #region Analyse input
         static Position AnalyzeInput(string input, Dictionary<char, int> coordinates)
         {
             Position pos = new Position();
@@ -396,7 +407,9 @@ namespace Battleship
             }
             return pos;
         }
+        #endregion Analyse input
 
+        #region Print header
         static void PrintHeader()
         {
             ForegroundColor = ConsoleColor.DarkYellow;
@@ -404,7 +417,9 @@ namespace Battleship
             for (int i = 1; i < 11; i++)
                 Write("[" + i + "]");
         }
+        #endregion Print header
 
+        #region Populate dictionary
         static Dictionary<char, int> PopulateDictionary()
         {
             Dictionary<char, int> Coordinate =
@@ -423,45 +438,50 @@ namespace Battleship
                      };
             return Coordinate;
         }
+        #endregion Populate dictionary
 
+        #region Commentator
         static void Commentator(GameFlow game, bool isMyShip)
         {
-            string title = isMyShip ? "Your" : "Enemy";
+            string title = isMyShip ? "You" : "Enemy";
 
             if (game.checkBattleship && game.battleshipSunk)
             {
                 ForegroundColor = ConsoleColor.DarkRed;
-                WriteLine("{0} {1} is sink", title, nameof(game.Battleship));
+                WriteLine("{0} {1} is sunk", title, nameof(game.Battleship));
                 game.checkBattleship = false;
             }
 
             if (game.checkCarrier && game.carrierSunk)
             {
                 ForegroundColor = ConsoleColor.DarkRed;
-                WriteLine("{0} {1} is sink", title, nameof(game.Carrier));
+                WriteLine("{0} {1} is sunk", title, nameof(game.Carrier));
                 game.checkCarrier = false;
             }
 
             if (game.checkDestroyer && game.destroyerSunk)
             {
                 ForegroundColor = ConsoleColor.DarkRed;
-                WriteLine("{0} {1} is sink", title, nameof(game.Destroyer));
+                WriteLine("{0} {1} is sunk", title, nameof(game.Destroyer));
                 game.checkDestroyer = false;
             }
 
             if (game.checkPatrolBoat && game.patrolBoatSunk)
             {
                 ForegroundColor = ConsoleColor.DarkRed;
-                WriteLine("{0} {1} is sink", title, nameof(game.PatrolBoat));
+                WriteLine("{0} {1} is sunk", title, nameof(game.PatrolBoat));
                 game.checkPatrolBoat = false;
             }
 
             if (game.checkSubmarine && game.submarineSunk)
             {
                 ForegroundColor = ConsoleColor.DarkRed;
-                WriteLine("{0} {1} is sink", title, nameof(game.Submarine));
+                WriteLine("{0} {1} is sunk", title, nameof(game.Submarine));
                 game.checkSubmarine = false;
             }
         }
+        #endregion Commentator
+
+        #endregion Classes
     }
 }

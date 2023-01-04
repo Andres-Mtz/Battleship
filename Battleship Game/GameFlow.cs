@@ -9,24 +9,32 @@ namespace Battleship
     class GameFlow
     {
         Random random = new Random();
+
+        #region Variables
+        // Private Integers
         private const int CARRIER = 5;
         private const int BATTLESHIP = 4;
         private const int DESTROYER = 3;
         private const int SUBMARINE = 3;
         private const int PATROLBOAT = 2;
 
-        public GameFlow()
-        {
-
-            Carrier = generatePosistion(CARRIER, AllShipsPosition);
-            Battleship = generatePosistion(BATTLESHIP, AllShipsPosition);
-            Destroyer = generatePosistion(DESTROYER, AllShipsPosition);
-            Submarine = generatePosistion(SUBMARINE, AllShipsPosition);
-            PatrolBoat = generatePosistion(PATROLBOAT, AllShipsPosition);
-        }
-
+        // Integers
         public int StepsTaken { get; set; } = 0;
 
+        // Booleans
+        public bool carrierSunk { get; set; } = false;
+        public bool battleshipSunk { get; set; } = false;
+        public bool destroyerSunk { get; set; } = false;
+        public bool submarineSunk { get; set; } = false;
+        public bool patrolBoatSunk { get; set; } = false;
+        public bool obliteratedAll { get; set; } = false;
+        public bool checkCarrier { get; set; } = true;
+        public bool checkBattleship { get; set; } = true;
+        public bool checkDestroyer { get; set; } = true;
+        public bool checkSubmarine { get; set; } = true;
+        public bool checkPatrolBoat { get; set; } = true;
+
+        // Lists
         public List<Position> Carrier { get; set; }
         public List<Position> Battleship { get; set; }
         public List<Position> Destroyer { get; set; }
@@ -34,22 +42,20 @@ namespace Battleship
         public List<Position> PatrolBoat { get; set; }
         public List<Position> AllShipsPosition { get; set; } = new List<Position>();
         public List<Position> FirePositions { get; set; } = new List<Position>();
+        #endregion Variables
 
+        #region Game flow constructor
+        public GameFlow()
+        {
+            Carrier = generatePosistion(CARRIER, AllShipsPosition);
+            Battleship = generatePosistion(BATTLESHIP, AllShipsPosition);
+            Destroyer = generatePosistion(DESTROYER, AllShipsPosition);
+            Submarine = generatePosistion(SUBMARINE, AllShipsPosition);
+            PatrolBoat = generatePosistion(PATROLBOAT, AllShipsPosition);
+        }
+        #endregion Game flow constructor
 
-        public bool carrierSunk { get; set; } = false;
-        public bool battleshipSunk { get; set; } = false;
-        public bool destroyerSunk { get; set; } = false;
-        public bool submarineSunk { get; set; } = false;
-        public bool patrolBoatSunk { get; set; } = false;
-        public bool obliteratedAll { get; set; } = false;
-
-
-        public bool checkCarrier { get; set; } = true;
-        public bool checkBattleship { get; set; } = true;
-        public bool checkDestroyer { get; set; } = true;
-        public bool checkSubmarine { get; set; } = true;
-        public bool checkPatrolBoat { get; set; } = true;
-
+        #region Check ship status
         public GameFlow CheckShipStatus(List<Position> hitPositions)
         {
 
@@ -63,8 +69,9 @@ namespace Battleship
             obliteratedAll = carrierSunk && battleshipSunk && destroyerSunk && submarineSunk && patrolBoatSunk;
             return this;
         }
+        #endregion Check ship status
 
-
+        #region Generate positions
         public List<Position> generatePosistion(int size, List<Position> allPosition)
         {
             List<Position> positions = new List<Position>();
@@ -83,7 +90,9 @@ namespace Battleship
 
             return positions;
         }
+        #endregion Generate positions
 
+        #region Generate random positions
         public List<Position> generatePositionRandomly(int size)
         {
             List<Position> positions = new List<Position>();
@@ -140,7 +149,9 @@ namespace Battleship
             }
             return positions;
         }
+        #endregion Generate random positions
 
+        #region Fire
         public GameFlow fire()
         {
             Position enemyShotPos = new Position();
@@ -156,5 +167,6 @@ namespace Battleship
             FirePositions.Add(enemyShotPos);
             return this;
         }
+        #endregion Fire
     }
 }
